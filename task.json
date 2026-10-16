@@ -1,0 +1,16 @@
+{
+  "_说明": "【云端 → 本机】云端下发的任务。云端 probe.py 判定『本机落后且空闲』时写入 status=pending；本机领到任务后回写 running，执行完回写 done/failed 并带上结果。status ∈ idle|pending|running|done|failed|skipped。",
+  "id": null,
+  "action": null,
+  "target_azhash": null,
+  "target_version": null,
+  "from_azhash": null,
+  "from_version": null,
+  "issued_at": null,
+  "issued_reason": null,
+  "status": "idle",
+  "claimed_at": null,
+  "finished_at": null,
+  "result": null,
+  "updated_at": null
+}
