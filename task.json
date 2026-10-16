@@ -7,9 +7,14 @@
   "from_version": "9.7.397",
   "issued_at": "2026-10-16 23:10:00",
   "issued_reason": "【闭环测试】人工构造：目标=本机当前指纹，本机应判 G2『已最新』跳过，不会真跑反编译",
-  "status": "running",
+  "status": "done",
   "claimed_at": "2026-10-16 23:13:17",
-  "finished_at": null,
-  "result": null,
-  "updated_at": "2026-10-16 23:13:17"
+  "finished_at": "2026-10-16 23:13:21",
+  "result": {
+    "ok": true,
+    "skipped": true,
+    "reason": "already_done",
+    "message": "本机无需执行（already_done）"
+  },
+  "updated_at": "2026-10-16 23:13:21"
 }
