@@ -52,8 +52,12 @@ LOGIN_PORT = 80
 LOGIN_HEX = "000a002a300000083d120130"      # 与游戏客户端检查更新时发的包一致
 HERE = os.path.dirname(os.path.abspath(__file__))
 STATE_FILE = os.path.join(HERE, "state.json")
+LOCAL_STATUS_FILE = os.path.join(HERE, "local-status.json")   # 本机上报（本机写）
+TASK_FILE = os.path.join(HERE, "task.json")                   # 任务下发（云端写）
 CST = timezone(timedelta(hours=8))
 AZHASH_RE = re.compile(r"\$azhash\$(\d+)\$(\d+)\$(\d+)\$([0-9a-f]+)")
+OFFLINE_SEC = 15 * 60      # 本机超过这么久没上报 → 视为离线，不下发任务
+                           # （本机守护器默认 5 分钟一轮，15 分钟 = 容许连丢两轮）
 APK_RE = re.compile(r"https?://[^\"\s]+")
 
 # 本地调试用：**只有显式设置 ALZ_LOCAL_MAIL_CFG 环境变量**指向 alz 的「邮件配置.json」
@@ -136,6 +140,100 @@ def save_state(st):
 
 
 # --------------------------------------------------------------------------
+# 端云同步：读本机上报状态 → 决定是否下发任务
+# --------------------------------------------------------------------------
+def load_json(path, default=None):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return default if default is not None else {}
+
+
+def save_json(path, obj):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(obj, f, ensure_ascii=False, indent=2)
+
+
+def parse_cst(s):
+    try:
+        return datetime.strptime(str(s), "%Y-%m-%d %H:%M:%S").replace(tzinfo=CST)
+    except Exception:
+        return None
+
+
+def local_status():
+    """本机上报的状态（本机写、云端读）。"""
+    return load_json(LOCAL_STATUS_FILE) or {}
+
+
+def prev_task():
+    """上一次下发的任务（用于去重）。"""
+    return load_json(TASK_FILE) or {}
+
+
+def evaluate(hs, ls, task):
+    """核心决策：本机这次该不该收到任务？→ (action, reason)
+
+    action ∈ issue / already_issued / skip，按优先级：
+
+      1. 本机从未上报           → skip      （端云同步端还没部署）
+      2. online_at 过期          → skip      （离线。本机上线后自己的握手自检会补跑，
+                                              所以离线时下发没意义——没人接）
+      3. busy 或 phase!=done     → skip      （正在反编译，不能打断）
+      4. 本机指纹 == 云端指纹     → skip      （已最新。这一条天然覆盖『版本号相同但
+                                              内容变化』：国服会在版本号不变时推内容，
+                                              此时 $azhash$ 里的内容 hash 会变）
+      5. 同目标任务已下发未完成   → already_issued（避免每 10 分钟重复下发＋重复发信）
+      6. 其余（本机确实落后）     → issue
+    """
+    if not ls or not ls.get("online_at"):
+        return "skip", "本机从未上报状态（端云同步端未部署）"
+
+    t = parse_cst(ls.get("online_at"))
+    if t is None:
+        return "skip", f"本机 online_at 无法解析：{ls.get('online_at')!r}"
+    age = (datetime.now(CST) - t).total_seconds()
+    if age > OFFLINE_SEC:
+        return "skip", (f"本机离线（{age / 60:.1f} 分钟未上报，阈值 {OFFLINE_SEC // 60} 分钟）；"
+                        f"本机上线后会用自己的握手自检补跑")
+
+    if ls.get("busy") or (ls.get("phase") not in (None, "done")):
+        return "skip", f"本机正在反编译（phase={ls.get('phase')}，busy={ls.get('busy')}）"
+
+    if ls.get("azhash") == hs.get("azhash"):
+        return "skip", f"本机已是最新（{ls.get('version')}，指纹与云端一致）"
+
+    if (task.get("status") in ("pending", "running")
+            and task.get("target_azhash") == hs.get("azhash")):
+        return "already_issued", (f"任务 {task.get('id')} 已处于 {task.get('status')}"
+                                  f"（目标 {task.get('target_version')}），不重复下发")
+
+    return "issue", (f"本机 {ls.get('version') or '(未知)'} 落后于云端 {hs.get('version')}"
+                     f"（本机 {str(ls.get('azhash'))[-16:]} → 云端 {str(hs.get('azhash'))[-16:]}）")
+
+
+def build_task(hs, ls):
+    """构造下发任务；id 含目标版本 + 指纹尾 8 位，便于去重与追踪。"""
+    tail = str(hs.get("azhash") or "unknown").split("$")[-1][:8]
+    return {
+        "id": f"task-{hs.get('version', 'x')}-{tail}",
+        "action": "hotupdate",
+        "target_azhash": hs.get("azhash"),
+        "target_version": hs.get("version"),
+        "from_azhash": ls.get("azhash"),
+        "from_version": ls.get("version"),
+        "issued_at": now_cst(),
+        "issued_reason": f"本机 {ls.get('version')} 落后于云端 {hs.get('version')}",
+        "status": "pending",
+        "claimed_at": None,
+        "finished_at": None,
+        "result": None,
+        "updated_at": now_cst(),
+    }
+
+
+# --------------------------------------------------------------------------
 # 邮件
 # --------------------------------------------------------------------------
 def mail_config():
@@ -191,29 +289,54 @@ def send_mail(subject, body, cfg, dry=False):
         return False
 
 
-def build_change_mail(hs, st):
+def build_change_mail(hs, st, ls, action, reason, issued, changed):
     old_v = st.get("version") or "(无记录)"
     old_a = st.get("azhash") or "(无记录)"
-    subject = f"【碧蓝航线】检测到热更新 {hs['version']}（原 {old_v}）"
-    body = "\n".join([
+    if changed:
+        subject = f"【碧蓝航线】检测到热更新 {hs['version']}（原 {old_v}）"
+    elif action == "issue":
+        subject = f"【碧蓝航线】已向本机下发拆包任务 {hs['version']}"
+    else:
+        subject = f"【碧蓝航线】版本状态更新 {hs['version']}"
+
+    busy = bool(ls.get("busy")) or (ls.get("phase") not in (None, "done"))
+    lines = [
         "碧蓝航线国服 · 版本哨兵（云端 GitHub Actions）",
         "=" * 46,
         f"检测时间 : {now_cst()} (北京时间)",
-        f"新版本   : {hs['version']}",
-        f"新指纹   : {hs['azhash']}",
-        f"上次版本 : {old_v}",
-        f"上次指纹 : {old_a}",
-        f"累计变化 : {st.get('changes', 0) + 1} 次",
+        f"云端版本 : {hs['version']}",
+        f"云端指纹 : {hs['azhash']}",
+        f"上次记录 : {old_v} / {old_a}",
         "",
-        f"安装包   : {hs.get('apk') or '(未取到)'}",
+        "── 本机状态（由本机上报）──",
+        f"上报时间 : {ls.get('online_at') or '(从未上报)'}",
+        f"本机版本 : {ls.get('version') or '(未知)'}",
+        f"本机指纹 : {ls.get('azhash') or '(未知)'}",
+        f"忙闲     : {'反编译中（phase=' + str(ls.get('phase')) + '）' if busy else '空闲'}",
+        "",
+        "── 端云决策 ──",
+        f"判定     : {action}",
+        f"原因     : {reason}",
+    ]
+    if issued:
+        lines += [
+            "",
+            f"★ 已下发任务：{issued['id']}",
+            f"  目标版本 : {issued['target_version']}",
+            f"  目标指纹 : {issued['target_azhash']}",
+            f"  APK      : {hs.get('apk') or '(未取到)'}",
+            "  本机将在下一次轮询领到该任务并自动执行反编译，完成后会再发一封结果邮件。",
+        ]
+    else:
+        lines += ["", "（本次未下发任务）"]
+    lines += [
+        "",
         f"握手开销 : {hs['bytes']} 字节 / {hs['elapsed']:.2f} 秒",
         "",
-        "说明：本哨兵只做「检测 + 通知」，不下载、不反编译（GitHub runner 无你的工具链）。",
-        "      本机守护器开机后会自己发现落后并自动补跑；你也可以手动执行 alz.hotupdate()。",
-        "",
-        f"— 由 GitHub Actions 自动发出 · state.json 已更新",
-    ])
-    return subject, body
+        "说明：云端只做「检测 + 决策 + 通知」，反编译仍在你的电脑上执行（runner 没有你的工具链）。",
+        "— 由 GitHub Actions 自动发出",
+    ]
+    return subject, "\n".join(lines)
 
 
 # --------------------------------------------------------------------------
@@ -292,14 +415,31 @@ def main():
         st["version"] = hs["version"]
         st["first_seen"] = st.get("first_seen") or now_cst()
         st["last_change"] = now_cst()
-        subject, body = build_change_mail(hs, st)
-        log(f"★ 版本变化：{old} → {hs['azhash']}")
+        log(f"★ 云端版本变化：{old} → {hs['azhash']}")
+    elif not first_run:
+        log(f"云端无变化（仍为 {hs['version']}）")
+
+    # ---- 端云决策：**每轮都做**，不能只在「云端检测到变化」时做 ----
+    #   否则「本机落后、但云端基线早已是新版本」这种情况永远补不上（那时 changed=False）。
+    ls = local_status()
+    task = prev_task()
+    action, reason = evaluate(hs, ls, task)
+    issued = None
+    if action == "issue":
+        issued = build_task(hs, ls)
+        log(f"★ 端云决策：下发任务 {issued['id']} — {reason}")
+    else:
+        log(f"端云决策：{action} — {reason}")
+
+    # ---- 通知：有版本变化，或本次新下发了任务（其余静默，避免每 10 分钟一封）----
+    if changed or action == "issue":
+        subject, body = build_change_mail(hs, st, ls, action, reason, issued, changed)
         if not args.dry_run:
             send_mail(subject, body, cfg)
         else:
             log(f"[dry-run] 本应发：{subject}")
-    elif not first_run:
-        log(f"无变化（仍为 {hs['version']}）")
+    else:
+        log("本次不发邮件（云端无变化 且 未下发新任务）")
 
     # 每天一次心跳：让仓库保持"有活动"，避免 scheduled workflow 因 60 天无活动被禁用
     if st.get("last_alive") != today:
@@ -309,6 +449,9 @@ def main():
     if not args.dry_run:
         save_state(st)
         log("state.json 已更新")
+        if issued:
+            save_json(TASK_FILE, issued)
+            log(f"task.json 已更新（{issued['id']} / status=pending）→ 本机下次轮询会领到")
     else:
         log("[dry-run] 未落盘")
     return 0
