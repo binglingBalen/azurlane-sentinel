@@ -1,0 +1,16 @@
+{
+  "_说明": "【本机 → 云端】本机守护器上报的状态。由本机定期 git push 写入，云端 probe.py 读取后决定是否下发任务。本机每次轮询结束都刷新 online_at（这是判断『本机是否在线』的唯一依据）。",
+  "host": null,
+  "azhash": null,
+  "version": null,
+  "scripts64_md5": null,
+  "sharecfg_count": null,
+  "lua_files": null,
+  "busy": false,
+  "phase": null,
+  "lock": false,
+  "pid": null,
+  "online_at": null,
+  "last_hotupdate": null,
+  "note": null
+}
