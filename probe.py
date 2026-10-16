@@ -194,9 +194,10 @@ def evaluate(hs, ls, task):
     if t is None:
         return "skip", f"本机 online_at 无法解析：{ls.get('online_at')!r}"
     age = (datetime.now(CST) - t).total_seconds()
-    if age > OFFLINE_SEC:
-        return "skip", (f"本机离线（{age / 60:.1f} 分钟未上报，阈值 {OFFLINE_SEC // 60} 分钟）；"
-                        f"本机上线后会用自己的握手自检补跑")
+    # ⚠ 本机已改为「不常驻、需要时手动跑」模式：**离线不再作为不下发的理由**。
+    #   云端把任务写进 task.json 让它挂着，用户下次手动跑时会领到并执行。
+    #   在线与否只用于邮件描述与排障。
+    online = age <= OFFLINE_SEC
 
     if ls.get("busy") or (ls.get("phase") not in (None, "done")):
         return "skip", f"本机正在反编译（phase={ls.get('phase')}，busy={ls.get('busy')}）"
@@ -209,7 +210,9 @@ def evaluate(hs, ls, task):
         return "already_issued", (f"任务 {task.get('id')} 已处于 {task.get('status')}"
                                   f"（目标 {task.get('target_version')}），不重复下发")
 
-    return "issue", (f"本机 {ls.get('version') or '(未知)'} 落后于云端 {hs.get('version')}"
+    state_txt = (f"本机在线（{age / 60:.1f} 分钟前上报）" if online
+                 else f"本机当前离线（{age / 60 / 60:.1f} 小时前上报，任务将留在 task.json 等它来领）")
+    return "issue", (f"本机 {ls.get('version') or '(未知)'} 落后于云端 {hs.get('version')}；{state_txt}"
                      f"（本机 {str(ls.get('azhash'))[-16:]} → 云端 {str(hs.get('azhash'))[-16:]}）")
 
 
