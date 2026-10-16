@@ -1,0 +1,10 @@
+{
+  "_说明": "版本哨兵状态，由 GitHub Actions 自动维护（不要手改）。azhash = 上次观测到的版本指纹；version = 对应版本号；changes = 累计检测到多少次变化；history = 变化历史（最近 200 条）；last_alive = 每日心跳（用于避免 scheduled workflow 因 60 天无活动被禁用）。",
+  "azhash": null,
+  "version": null,
+  "changes": 0,
+  "history": [],
+  "first_seen": null,
+  "last_change": null,
+  "last_alive": null
+}

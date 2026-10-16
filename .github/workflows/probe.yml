@@ -1,0 +1,65 @@
+# 碧蓝航线国服 · 版本哨兵（GitHub Actions）
+#
+# 部署步骤：
+#   1. 在 GitHub 建一个仓库（公有或私有都行；公有的话 Actions 完全免费无限）
+#   2. 把本目录内容作为仓库根推上去（probe.py / state.json / .github/workflows/probe.yml）
+#   3. 仓库 Settings → Secrets and variables → Actions，添加 5 个 secret：
+#        SMTP_HOST   smtp.qq.com
+#        SMTP_PORT   465
+#        SMTP_USER   你的发件邮箱
+#        SMTP_AUTH   邮箱授权码（不是登录密码！）
+#        MAIL_TO     收件邮箱（多个用逗号分隔）
+#   4. Settings → Actions → General → Workflow permissions 选 "Read and write permissions"
+#      （提交 state.json 需要写权限）
+#   5. Actions 标签页 → 选 azurlane-version-sentinel → Run workflow（手动跑一次）
+#      ⚠ 这一次最关键：看日志里的握手结果是不是拿到了版本号
+#        —— GitHub runner 在境外，连国服登录服可能被限流，必须实测确认
+#   6. 确认无误后就自动了：每 10 分钟检测一次，版本变化时发邮件
+
+name: azurlane-version-sentinel
+
+on:
+  schedule:
+    # 每 10 分钟。GitHub cron 最小粒度是 5 分钟，但 10 分钟更稳（额度与限流都更从容）。
+    # ⚠ GitHub 的 schedule 不保证准时，高峰期可能延迟 5–30 分钟，属正常现象。
+    - cron: "*/10 * * * *"
+  workflow_dispatch:      # 手动触发，用于部署验证与排障
+
+permissions:
+  contents: write         # 需要写权限来提交 state.json
+
+concurrency:
+  group: azurlane-sentinel
+  cancel-in-progress: false   # 上一轮没跑完就不叠下一轮，否则 git push 会撞车
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5    # 正常情况下几秒就跑完；超时保护避免卡死占额度
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 握手检测 + 邮件推送
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_AUTH: ${{ secrets.SMTP_AUTH }}
+          MAIL_TO:   ${{ secrets.MAIL_TO }}
+        run: python probe.py
+
+      - name: 提交状态（版本变化 或 每日心跳）
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state.json
+          if git diff --staged --quiet; then
+            echo "state.json 无变化，跳过提交"
+          else
+            git commit -m "state: $(date -u +'%Y-%m-%d %H:%M') UTC"
+            git push
+          fi
