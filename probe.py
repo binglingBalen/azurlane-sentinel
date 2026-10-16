@@ -40,6 +40,7 @@ import time
 from datetime import datetime, timedelta, timezone
 from email.header import Header
 from email.mime.text import MIMEText
+from email.utils import formataddr
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -173,7 +174,10 @@ def send_mail(subject, body, cfg, dry=False):
         return False
     msg = MIMEText(body, "plain", "utf-8")
     msg["Subject"] = Header(subject, "utf-8")
-    msg["From"] = Header(f"碧蓝版本哨兵 <{cfg['user']}>", "utf-8")
+    # ⚠ 必须用 formataddr 把「显示名」和「地址」分开：
+    #   写成 Header(f"名字 <{addr}>") 会把连地址一起做 RFC2047 编码，
+    #   QQ 邮箱判定 From 头无有效地址 → 550 拒收（已在真实运行中踩到）。
+    msg["From"] = formataddr(("碧蓝版本哨兵", cfg["user"]))
     msg["To"] = ", ".join(cfg["to"])
     try:
         with smtplib.SMTP_SSL(cfg["host"], int(cfg.get("port") or 465),
