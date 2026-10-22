@@ -1,17 +1,23 @@
 {
   "_说明": "版本哨兵状态，由 GitHub Actions 自动维护（不要手改）。azhash = 上次观测到的版本指纹；version = 对应版本号；changes = 累计检测到多少次变化；history = 变化历史（最近 200 条）；last_alive = 每日心跳（用于避免 scheduled workflow 因 60 天无活动被禁用）。",
-  "azhash": "$azhash$9$7$410$18e78750de62b4a0",
-  "version": "9.7.410",
-  "changes": 1,
+  "azhash": "$azhash$9$7$411$5a39f1dbc49712d5",
+  "version": "9.7.411",
+  "changes": 2,
   "history": [
     {
       "azhash": "$azhash$9$7$410$18e78750de62b4a0",
       "version": "9.7.410",
       "at": "2026-10-22 14:37:57",
       "from": "$azhash$9$7$398$def4c26318af25f3"
+    },
+    {
+      "azhash": "$azhash$9$7$411$5a39f1dbc49712d5",
+      "version": "9.7.411",
+      "at": "2026-10-22 20:21:09",
+      "from": "$azhash$9$7$410$18e78750de62b4a0"
     }
   ],
   "first_seen": "2026-10-16 22:37:42",
-  "last_change": "2026-10-22 14:37:57",
+  "last_change": "2026-10-22 20:21:09",
   "last_alive": "2026-10-22"
 }
