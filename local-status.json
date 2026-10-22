@@ -8,8 +8,8 @@
   "busy": false,
   "phase": "done",
   "lock": false,
-  "pid": 11232,
-  "online_at": "2026-10-16 23:13:25",
-  "last_hotupdate": "2026-10-15 20:02:34",
-  "note": "例行上报（once）"
+  "pid": 20484,
+  "online_at": "2026-10-22 09:42:12",
+  "last_hotupdate": "2026-10-22 09:06:46",
+  "note": "例行上报（loop）"
 }
