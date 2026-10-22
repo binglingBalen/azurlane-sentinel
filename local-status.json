@@ -6,10 +6,10 @@
   "sharecfg_count": 32,
   "lua_files": null,
   "busy": true,
-  "phase": "failed",
-  "lock": false,
+  "phase": "running",
+  "lock": true,
   "pid": 30052,
-  "online_at": "2026-10-22 11:40:36",
+  "online_at": "2026-10-22 11:45:41",
   "last_hotupdate": "2026-10-22 10:56:13",
   "note": "例行上报（loop）"
 }
