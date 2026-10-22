@@ -5,11 +5,11 @@
   "scripts64_md5": "2b85396b4790ee366312d415b461786c",
   "sharecfg_count": 32,
   "lua_files": null,
-  "busy": true,
-  "phase": "running",
-  "lock": true,
+  "busy": false,
+  "phase": "done",
+  "lock": false,
   "pid": 34476,
-  "online_at": "2026-10-22 15:08:19",
+  "online_at": "2026-10-22 15:13:26",
   "last_hotupdate": "2026-10-22 15:05:25",
   "note": "例行上报（loop）"
 }
