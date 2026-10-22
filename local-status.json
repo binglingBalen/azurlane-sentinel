@@ -1,15 +1,15 @@
 {
   "host": "GJS-20230826YWD",
-  "azhash": "$azhash$9$7$410$18e78750de62b4a0",
-  "version": "9.7.410",
-  "scripts64_md5": "ffa518ce0ca4573f9a32f4207f4309b2",
+  "azhash": "$azhash$9$7$411$5a39f1dbc49712d5",
+  "version": "9.7.411",
+  "scripts64_md5": "2b85396b4790ee366312d415b461786c",
   "sharecfg_count": 32,
   "lua_files": null,
   "busy": true,
   "phase": "running",
   "lock": true,
-  "pid": 30052,
-  "online_at": "2026-10-22 15:04:14",
-  "last_hotupdate": "2026-10-22 10:56:13",
+  "pid": 34476,
+  "online_at": "2026-10-22 15:08:19",
+  "last_hotupdate": "2026-10-22 15:05:25",
   "note": "例行上报（loop）"
 }
