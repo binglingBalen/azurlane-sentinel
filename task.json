@@ -1,20 +1,15 @@
 {
-  "id": "task-9.7.398-def4c263",
+  "id": "task-9.7.416-4a4d48c2",
   "action": "hotupdate",
-  "target_azhash": "$azhash$9$7$398$def4c26318af25f3",
-  "target_version": "9.7.398",
-  "from_azhash": "$azhash$9$7$397$aaaaaaaaaaaaaaaa",
-  "from_version": "9.7.397",
-  "issued_at": "2026-10-16 23:10:00",
-  "issued_reason": "【闭环测试】人工构造：目标=本机当前指纹，本机应判 G2『已最新』跳过，不会真跑反编译",
-  "status": "done",
-  "claimed_at": "2026-10-16 23:13:17",
-  "finished_at": "2026-10-16 23:13:21",
-  "result": {
-    "ok": true,
-    "skipped": true,
-    "reason": "already_done",
-    "message": "本机无需执行（already_done）"
-  },
-  "updated_at": "2026-10-16 23:13:21"
+  "target_azhash": "$azhash$9$7$416$4a4d48c29f7ccfc8",
+  "target_version": "9.7.416",
+  "from_azhash": "$azhash$9$7$411$5a39f1dbc49712d5",
+  "from_version": "9.7.411",
+  "issued_at": "2026-10-23 14:40:47",
+  "issued_reason": "本机 9.7.411 落后于云端 9.7.416",
+  "status": "pending",
+  "claimed_at": null,
+  "finished_at": null,
+  "result": null,
+  "updated_at": "2026-10-23 14:40:47"
 }
