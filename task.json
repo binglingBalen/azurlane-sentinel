@@ -7,9 +7,12 @@
   "from_version": "9.7.411",
   "issued_at": "2026-10-23 14:40:47",
   "issued_reason": "本机 9.7.411 落后于云端 9.7.416",
-  "status": "running",
+  "status": "failed",
   "claimed_at": "2026-10-24 09:16:31",
-  "finished_at": null,
-  "result": null,
-  "updated_at": "2026-10-24 09:16:31"
+  "finished_at": "2026-10-24 09:20:28",
+  "result": {
+    "ok": false,
+    "error": "执行过程中异常中断"
+  },
+  "updated_at": "2026-10-24 09:20:28"
 }
