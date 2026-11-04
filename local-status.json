@@ -5,21 +5,21 @@
   "scripts64_md5": "adb598e6253f1a661375bd473441c204",
   "sharecfg_count": 32,
   "lua_files": null,
-  "busy": true,
+  "busy": false,
   "phase": "failed",
-  "lock": true,
-  "pid": 7816,
-  "online_at": "2026-11-04 19:11:21",
+  "lock": false,
+  "pid": 19360,
+  "online_at": "2026-11-04 19:13:35",
   "last_hotupdate": "2026-10-24 09:19:27",
   "note": "例行上报（loop）",
   "description_audit": {
     "version": "9.7.416",
-    "signature": "238c8bc57e01f0e2d17bfd56b275c691dba611c76d69a6aa064934cd8078f4f9",
+    "signature": "ca89a970f3b61dfb34691934c8ac14a07586d772080adc440ff552a362a1f4e9",
     "status": "reviewing",
-    "generated": "2026-11-04 19:07:28",
+    "generated": "2026-11-04 19:12:25",
     "counts": {
-      "confirmed_equal": 27121,
-      "confirmed_difference": 873
+      "confirmed_equal": 25878,
+      "confirmed_difference": 793
     },
     "skills": 2319,
     "level_records": 19050,
@@ -29,7 +29,7 @@
     "whole_skill_levels_closed": 181,
     "acceptance": {
       "accepted": false,
-      "remaining_tasks": 130442,
+      "remaining_tasks": 131765,
       "required": "逐条核查全部描述条件和效果，不能用参数相等替代整技能核查"
     }
   }
