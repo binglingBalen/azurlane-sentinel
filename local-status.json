@@ -8,15 +8,15 @@
   "busy": false,
   "phase": "failed",
   "lock": false,
-  "pid": 31372,
-  "online_at": "2026-11-04 16:24:19",
+  "pid": 33056,
+  "online_at": "2026-11-04 16:27:27",
   "last_hotupdate": "2026-10-24 09:19:27",
   "note": "例行上报（loop）",
   "description_audit": {
     "version": "9.7.416",
-    "signature": "a6cf72971387fdff38e677eacffef409daf5fbd62602df856973aeb591e07f6b",
+    "signature": "82eb096d71245efd2ffe62bb57b1e98157af778c7e8edf0b6bc5518d5890abbd",
     "status": "reviewing",
-    "generated": "2026-11-04 16:20:10",
+    "generated": "2026-11-04 16:27:23",
     "counts": {
       "confirmed_equal": 31125,
       "confirmed_difference": 890
