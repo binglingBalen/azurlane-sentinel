@@ -9,14 +9,14 @@
   "phase": "failed",
   "lock": false,
   "pid": 19360,
-  "online_at": "2026-11-04 20:30:56",
+  "online_at": "2026-11-04 20:36:01",
   "last_hotupdate": "2026-10-24 09:19:27",
   "note": "例行上报（loop）",
   "description_audit": {
     "version": "9.7.416",
-    "signature": "ca89a970f3b61dfb34691934c8ac14a07586d772080adc440ff552a362a1f4e9",
+    "signature": "656de96c1aabdd068a86939a0c206dde003d217df322bd09c0618dd0d2e83dda",
     "status": "reviewing",
-    "generated": "2026-11-04 19:12:25",
+    "generated": "2026-11-04 20:35:03",
     "counts": {
       "confirmed_equal": 25878,
       "confirmed_difference": 793
