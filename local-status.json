@@ -5,22 +5,32 @@
   "scripts64_md5": "adb598e6253f1a661375bd473441c204",
   "sharecfg_count": 32,
   "lua_files": null,
-  "busy": true,
+  "busy": false,
   "phase": "failed",
-  "lock": true,
-  "pid": 31576,
-  "online_at": "2026-11-04 15:58:55",
+  "lock": false,
+  "pid": 32424,
+  "online_at": "2026-11-04 16:03:37",
   "last_hotupdate": "2026-10-24 09:19:27",
   "note": "例行上报（loop）",
   "description_audit": {
     "version": "9.7.416",
-    "signature": "9c909d3667658f558e84be82af47c01b9583ac630dc6b4e90ebfad3381f922b6",
+    "signature": "52c027ff99313e68140801890ff2ebaa7f39b5ea5df5cb0a90675735551fb7e5",
     "status": "reviewing",
-    "generated": "2026-11-04 15:48:15",
+    "generated": "2026-11-04 16:03:32",
     "counts": {
       "confirmed_equal": 31125,
       "confirmed_difference": 890
     },
-    "candidate_skill_count": null
+    "skills": 2319,
+    "level_records": 19050,
+    "public_level_records": 19043,
+    "internal_runtime_records": 7,
+    "level_policy": "Declared max_level; max_level=0 is one separately labelled internal default-level inspection, not a trainable level.",
+    "whole_skill_levels_closed": 181,
+    "acceptance": {
+      "accepted": false,
+      "remaining_tasks": 126431,
+      "required": "逐条核查全部描述条件和效果，不能用参数相等替代整技能核查"
+    }
   }
 }
