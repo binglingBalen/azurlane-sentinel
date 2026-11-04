@@ -9,17 +9,17 @@
   "phase": "failed",
   "lock": false,
   "pid": 31576,
-  "online_at": "2026-11-04 15:45:33",
+  "online_at": "2026-11-04 15:50:38",
   "last_hotupdate": "2026-10-24 09:19:27",
   "note": "例行上报（loop）",
   "description_audit": {
     "version": "9.7.416",
-    "signature": "2dd2cdb064b4a393febf5f2727ed2d433917191bdfb507741f93ffb38668f35c",
+    "signature": "9c909d3667658f558e84be82af47c01b9583ac630dc6b4e90ebfad3381f922b6",
     "status": "reviewing",
-    "generated": "2026-11-04 14:46:18",
+    "generated": "2026-11-04 15:48:15",
     "counts": {
-      "confirmed_equal": 33177,
-      "confirmed_difference": 898
+      "confirmed_equal": 31125,
+      "confirmed_difference": 890
     },
     "candidate_skill_count": null
   }
