@@ -8,8 +8,21 @@
   "busy": false,
   "phase": "failed",
   "lock": false,
-  "pid": 13832,
-  "online_at": "2026-11-04 13:55:55",
+  "pid": 17144,
+  "online_at": "2026-11-04 14:01:53",
   "last_hotupdate": "2026-10-24 09:19:27",
-  "note": "例行上报（loop）"
+  "note": "例行上报（loop）",
+  "description_audit": {
+    "version": "9.7.416",
+    "signature": "cbf4dfba7732a958db80cedf9ef1acfa5d347d8e2df800629614d582067c96dc",
+    "status": "partial",
+    "generated": "2026-11-04 14:01:46",
+    "counts": {
+      "static_match": 30066,
+      "unresolved": 35330,
+      "candidate_mismatch": 1769,
+      "unsupported_description_levels": 3730
+    },
+    "candidate_skill_count": 201
+  }
 }
