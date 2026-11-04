@@ -9,17 +9,17 @@
   "phase": "failed",
   "lock": false,
   "pid": 8328,
-  "online_at": "2026-11-04 16:35:29",
+  "online_at": "2026-11-04 16:42:39",
   "last_hotupdate": "2026-10-24 09:19:27",
   "note": "例行上报（loop）",
   "description_audit": {
     "version": "9.7.416",
-    "signature": "82eb096d71245efd2ffe62bb57b1e98157af778c7e8edf0b6bc5518d5890abbd",
+    "signature": "1cd6ee64dd364d9582b6f03742ee8f48d6cbfa500002f92d98880736a26c3f98",
     "status": "reviewing",
-    "generated": "2026-11-04 16:28:21",
+    "generated": "2026-11-04 16:41:48",
     "counts": {
-      "confirmed_equal": 31125,
-      "confirmed_difference": 890
+      "confirmed_equal": 30210,
+      "confirmed_difference": 817
     },
     "skills": 2319,
     "level_records": 19050,
@@ -29,7 +29,7 @@
     "whole_skill_levels_closed": 181,
     "acceptance": {
       "accepted": false,
-      "remaining_tasks": 126431,
+      "remaining_tasks": 127419,
       "required": "逐条核查全部描述条件和效果，不能用参数相等替代整技能核查"
     }
   }
