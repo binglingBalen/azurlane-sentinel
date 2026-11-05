@@ -8,8 +8,8 @@
   "busy": false,
   "phase": "done",
   "lock": false,
-  "pid": 29784,
-  "online_at": "2026-11-05 15:30:57",
+  "pid": 29192,
+  "online_at": "2026-11-05 15:33:01",
   "last_hotupdate": "2026-11-05 14:53:30",
   "note": "例行上报（loop）",
   "content_signature": "f7cad85aa6a39b5754de15c4824ab590e7d3a8bccf9c6abe1d59ef2b62088640",
@@ -19,7 +19,7 @@
     "version": "9.7.423",
     "signature": "7b1f22a277673800a196ebd59b6f278878fecec4a18822274ac1c6940a3a3c4e",
     "status": "reviewing",
-    "generated": "2026-11-05 15:03:57",
+    "generated": "2026-11-05 15:31:30",
     "counts": {
       "confirmed_equal": 26240,
       "confirmed_difference": 821
@@ -41,25 +41,25 @@
         "still_present": 821
       },
       "current_snapshot": {
-        "snapshot": "图片\\20261105-150357-7b1f22a2\\核查快照.json.gz",
-        "sha256": "5303f040c237d7439dba24d90e058d55fb1ef62b429a0650c541a58d6bb24e15",
+        "snapshot": "图片\\20261105-153130-7b1f22a2\\核查快照.json.gz",
+        "sha256": "48661c20559e1a71a4f0782ea23a0b90f55de4cd3a2b92d9d8a27362baaf2b52",
         "signature": "7b1f22a277673800a196ebd59b6f278878fecec4a18822274ac1c6940a3a3c4e",
         "version": "9.7.423",
         "game_signature": "390e7fa6e3abb48e2bdf35490db2d147784f14cef8229b7ae906ca6e65f4e6e4"
       },
       "baseline_snapshot": {
-        "snapshot": "图片\\20261105-143808-262fca34\\核查快照.json.gz",
+        "game_signature": "5a3eb2c2bd948e66f2c282ad8e97344ef85c94f4aaae807f2628c872b01fdc77",
         "sha256": "96721b126dfc7201367c570d6955e7f198df35520e7a16f6a2e2163a63fcb90c",
         "signature": "262fca34eb44418f65372909fdeda9de4e16338371cf1284a43934008b82cb71",
-        "version": "9.7.421",
-        "game_signature": "5a3eb2c2bd948e66f2c282ad8e97344ef85c94f4aaae807f2628c872b01fdc77"
+        "snapshot": "图片\\20261105-143808-262fca34\\核查快照.json.gz",
+        "version": "9.7.421"
       },
       "html": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\修复对照.html",
       "json": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\修复对照.json",
       "csv": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\修复对照.csv",
       "images": [
         {
-          "file": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\图片\\20261105-150357-7b1f22a2\\修复对照-01.png",
+          "file": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\图片\\20261105-153130-7b1f22a2\\修复对照-01.png",
           "sha256": "46f7332c2170a48ed8119b34d2078d464e5986c5627bea47729586aa1f5b3daf",
           "width": 3200,
           "height": 598,
