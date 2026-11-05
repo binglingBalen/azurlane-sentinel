@@ -37,6 +37,9 @@ import socket
 import ssl
 import sys
 import time
+import urllib.request
+import urllib.error
+from content_identity import content_signature, parse_manifest
 from datetime import datetime, timedelta, timezone
 from email.header import Header
 from email.mime.text import MIMEText
@@ -100,8 +103,6 @@ def handshake(timeout=12.0, settle=0.4):
                 if not chunk:
                     break
                 data += chunk
-                if b"$azhash$" in data:
-                    break
     except Exception as e:
         return {"ok": False, "error": f"{type(e).__name__}: {e}",
                 "bytes": len(data), "elapsed": time.perf_counter() - t0}
@@ -118,7 +119,43 @@ def handshake(timeout=12.0, settle=0.4):
         "elapsed": time.perf_counter() - t0,
         "error": None if m else "响应中未匹配到 $azhash$ 指纹",
         "raw": txt[:300],
+        "names": [f"${k}hash{v}" for k,v in re.findall(r'\$(.*?)hash(.*?)"', txt)],
     }
+
+
+def probe_content(hs, state, opener=urllib.request.urlopen):
+    """Conditional CDN read detects mutable az content and independent manifests."""
+    names=hs.get('names') or []
+    if hs['azhash'] not in names:
+        raise ValueError('Incomplete login manifest list')
+    cache=state.get('manifest_cache') or {}
+    reusable=cache.get('name')==hs['azhash'] and cache.get('names')==names and bool(cache.get('signature'))
+    errors=[]
+    for cdn in ('https://blhx-patch-oss.oss-cn-hangzhou.aliyuncs.com',
+                'https://line3-patch-blhx.bilibiligame.net'):
+        url=cdn+'/android/hash/'+hs['azhash']
+        headers={'User-Agent':'alz-cloud-sentinel/2','Cache-Control':'no-cache'}
+        if reusable and cache.get('endpoint')==url:
+            if cache.get('etag'): headers['If-None-Match']=cache['etag']
+            elif cache.get('last_modified'): headers['If-Modified-Since']=cache['last_modified']
+        try:
+            with opener(urllib.request.Request(url,headers=headers),timeout=20) as response:
+                data=response.read(); manifest=parse_manifest(data)
+                cache=dict(name=hs['azhash'],names=names,signature=content_signature(manifest,names),
+                    etag=response.headers.get('ETag'),last_modified=response.headers.get('Last-Modified'),
+                    endpoint=url,entries=len(manifest),bytes=len(data))
+            break
+        except urllib.error.HTTPError as error:
+            if error.code==304 and reusable and cache.get('endpoint')==url:
+                break
+            errors.append(str(error))
+        except Exception as error:
+            errors.append(type(error).__name__+': '+str(error))
+    else:
+        raise RuntimeError('Content probe failed: '+'; '.join(errors))
+    state['manifest_cache']=cache
+    hs.update(content_signature=cache['signature'],content_schema=1,manifest_names=names)
+    return hs
 
 
 # --------------------------------------------------------------------------
@@ -199,16 +236,23 @@ def evaluate(hs, ls, task):
     #   在线与否只用于邮件描述与排障。
     online = age <= OFFLINE_SEC
 
-    if ls.get("busy") or (ls.get("phase") not in (None, "done")):
+    if online and (ls.get("busy") or (ls.get("phase") not in (None, "done", "failed", "partial", "error"))):
         return "skip", f"本机正在反编译（phase={ls.get('phase')}，busy={ls.get('busy')}）"
 
-    if ls.get("azhash") == hs.get("azhash"):
+    same_content=bool(hs.get('content_signature')) and ls.get('content_signature')==hs['content_signature']
+    if same_content and not ls.get('generation_pending'):
         return "skip", f"本机已是最新（{ls.get('version')}，指纹与云端一致）"
 
     if (task.get("status") in ("pending", "running")
-            and task.get("target_azhash") == hs.get("azhash")):
+            and task.get("target_content_signature") == hs.get("content_signature")):
+        claimed=parse_cst(task.get('claimed_at') or task.get('issued_at'))
+        if task.get('status')=='running' and claimed and (datetime.now(CST)-claimed).total_seconds()>3*3600:
+            return 'issue','任务租期已超过3小时，重新排队；本机互斥锁仍阻止重入'
         return "already_issued", (f"任务 {task.get('id')} 已处于 {task.get('status')}"
                                   f"（目标 {task.get('target_version')}），不重复下发")
+    finished=parse_cst(task.get('finished_at'))
+    if task.get('status')=='failed' and task.get('target_content_signature')==hs.get('content_signature') and finished and (datetime.now(CST)-finished).total_seconds()<1800:
+        return 'skip','同一内容执行失败后30分钟退避，保留失败证据'
 
     state_txt = (f"本机在线（{age / 60:.1f} 分钟前上报）" if online
                  else f"本机当前离线（{age / 60 / 60:.1f} 小时前上报，任务将留在 task.json 等它来领）")
@@ -219,11 +263,15 @@ def evaluate(hs, ls, task):
 def build_task(hs, ls):
     """构造下发任务；id 含目标版本 + 指纹尾 8 位，便于去重与追踪。"""
     tail = str(hs.get("azhash") or "unknown").split("$")[-1][:8]
+    tail=hs.get('content_signature',tail)[:16]
     return {
+        "schema": 2,
         "id": f"task-{hs.get('version', 'x')}-{tail}",
         "action": "hotupdate",
         "target_azhash": hs.get("azhash"),
         "target_version": hs.get("version"),
+        "target_content_signature": hs.get('content_signature'),
+        "manifest_names": hs.get('manifest_names'),
         "from_azhash": ls.get("azhash"),
         "from_version": ls.get("version"),
         "issued_at": now_cst(),
@@ -351,6 +399,8 @@ def main():
     ap.add_argument("--test-smtp", action="store_true", help="只验证 SMTP 登录（不发信）")
     ap.add_argument("--test-mail", action="store_true", help="握手 + 真发一封测试邮件")
     ap.add_argument("--dry-run", action="store_true", help="握手+比对+打印，不发信不落盘")
+    ap.add_argument('--no-mail',action='store_true',help='Only machine task delivery; suppress human mail')
+    ap.add_argument('--verify-delivery',action='store_true',help='Issue a read-only check task to verify delivery and acknowledgement')
     args = ap.parse_args()
 
     cfg = mail_config()
@@ -396,6 +446,11 @@ def main():
         return 1
 
     st = load_state()
+    try:
+        probe_content(hs,st)
+    except Exception as error:
+        log('内容检测失败，不改基线/任务：'+type(error).__name__+': '+str(error))
+        return 1
     old = st.get("azhash")
     today = datetime.now(CST).strftime("%Y-%m-%d")
 
@@ -406,7 +461,7 @@ def main():
         st["azhash"] = hs["azhash"]
         st["version"] = hs["version"]
         st["first_seen"] = st.get("first_seen") or now_cst()
-    changed = (not first_run) and (old != hs["azhash"])
+    changed = (not first_run) and (old != hs["azhash"] or (st.get('content_signature') and st['content_signature']!=hs['content_signature']))
 
     if changed:
         st["changes"] = int(st.get("changes") or 0) + 1
@@ -433,9 +488,13 @@ def main():
         log(f"★ 端云决策：下发任务 {issued['id']} — {reason}")
     else:
         log(f"端云决策：{action} — {reason}")
+    if args.verify_delivery and task.get('status') not in ('pending','running'):
+        issued=build_task(hs,ls)
+        issued.update(action='check',id='verify-'+issued['id'],issued_reason='只读云→本机→回执链路验证')
+        action='issue'
 
     # ---- 通知：有版本变化，或本次新下发了任务（其余静默，避免每 10 分钟一封）----
-    if changed or action == "issue":
+    if (changed or action == "issue") and not args.no_mail:
         subject, body = build_change_mail(hs, st, ls, action, reason, issued, changed)
         if not args.dry_run:
             send_mail(subject, body, cfg)
@@ -448,6 +507,10 @@ def main():
     if st.get("last_alive") != today:
         st["last_alive"] = today
         log(f"心跳已更新（{today}）")
+    last_probe=parse_cst(st.get('last_probe'))
+    if changed or issued or not last_probe or (datetime.now(CST)-last_probe).total_seconds()>=120:
+        st['last_probe']=now_cst()
+    st.update(content_signature=hs['content_signature'],content_schema=1,manifest_names=hs['manifest_names'])
 
     if not args.dry_run:
         save_state(st)

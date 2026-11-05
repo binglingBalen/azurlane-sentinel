@@ -1,81 +1,46 @@
-# 碧蓝航线国服 · 版本哨兵（GitHub Actions）
-#
-# 部署步骤：
-#   1. 在 GitHub 建一个仓库（公有或私有都行；公有的话 Actions 完全免费无限）
-#   2. 把本目录内容作为仓库根推上去（probe.py / state.json / .github/workflows/probe.yml）
-#   3. 仓库 Settings → Secrets and variables → Actions，添加 5 个 secret：
-#        SMTP_HOST   smtp.qq.com
-#        SMTP_PORT   465
-#        SMTP_USER   你的发件邮箱
-#        SMTP_AUTH   邮箱授权码（不是登录密码！）
-#        MAIL_TO     收件邮箱（多个用逗号分隔）
-#   4. Settings → Actions → General → Workflow permissions 选 "Read and write permissions"
-#      （提交 state.json 需要写权限）
-#   5. Actions 标签页 → 选 azurlane-version-sentinel → Run workflow
-#      · test_mail 留 false  → 正常检测
-#      · test_mail 勾 true   → 顺带发一封测试邮件，用来验证 SMTP 通道
-#   6. 之后就自动了：每 10 分钟检测一次，版本变化时发邮件
-
 name: azurlane-version-sentinel
 
 on:
   schedule:
-    # 每 10 分钟。GitHub cron 最小粒度是 5 分钟，但 10 分钟更稳（额度与限流都更从容）。
-    # ⚠ GitHub 的 schedule 不保证准时，高峰期可能延迟 5–30 分钟，属正常现象。
-    - cron: "*/10 * * * *"
+    - cron: '2-59/5 * * * *'
   workflow_dispatch:
     inputs:
-      test_mail:
-        description: "发一封测试邮件（验证 SMTP 通道），勾选后本次会真发信"
+      verify_delivery:
+        description: 'Issue one read-only delivery/acknowledgement check task'
         type: boolean
         default: false
+      duration_seconds:
+        description: 'Monitor lifetime before automatic handoff (120..18000 seconds)'
+        type: number
+        default: 18000
 
 permissions:
-  contents: write         # 需要写权限来提交 state.json
+  contents: write
+  actions: write
 
 concurrency:
   group: azurlane-sentinel
-  cancel-in-progress: false   # 上一轮没跑完就不叠下一轮，否则 git push 会撞车
+  cancel-in-progress: false
 
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 5    # 正常情况下几秒就跑完；超时保护避免卡死占额度
+    timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-
-      - name: 握手检测 + 邮件推送
+          python-version: '3.11'
+      - name: Continuous content detection and machine task delivery
         env:
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_AUTH: ${{ secrets.SMTP_AUTH }}
-          MAIL_TO:   ${{ secrets.MAIL_TO }}
-          TEST_MAIL: ${{ inputs.test_mail }}
+          GITHUB_TOKEN: ${{ github.token }}
+          VERIFY_DELIVERY: ${{ inputs.verify_delivery }}
+          WATCH_DURATION: ${{ inputs.duration_seconds || '18000' }}
         run: |
-          if [ "$TEST_MAIL" = "true" ]; then
-            echo "→ 手动测试模式：发一封测试邮件"
-            python probe.py --test-mail
+          if [ "$VERIFY_DELIVERY" = "true" ]; then
+            python -u watch.py --interval 60 --duration "$WATCH_DURATION" --verify-delivery
           else
-            python probe.py
-          fi
-
-      - name: 提交状态（版本变化 / 任务下发 / 每日心跳）
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # 用 -A 而不是只 add state.json：task.json（下发给本机的任务）也要一起提交
-          git add -A
-          if git diff --staged --quiet; then
-            echo "无文件变化，跳过提交"
-          else
-            git commit -m "state: $(date -u +'%Y-%m-%d %H:%M') UTC"
-            # ⚠ 本机也在往同一仓库 push（local-status.json / task.json 认领与结单）。
-            #   两边 HEAD 相同时会 non-fast-forward。必须 rebase 重试，
-            #   否则本轮下发的 task.json 会提交失败 → 任务静默丢失（本机永远领不到）。
-            git push || (git pull --rebase --autostash && git push) || (sleep 5 && git pull --rebase --autostash && git push)
+            python -u watch.py --interval 60 --duration "$WATCH_DURATION"
           fi
