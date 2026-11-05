@@ -21,10 +21,19 @@
   "from_version": "9.7.416",
   "issued_at": "2026-11-05 09:27:11",
   "issued_reason": "只读云→本机→回执链路验证",
-  "status": "running",
+  "status": "done",
   "claimed_at": "2026-11-05 09:27:49",
-  "finished_at": null,
-  "result": null,
-  "updated_at": "2026-11-05 09:27:49",
+  "finished_at": "2026-11-05 09:27:52",
+  "result": {
+    "ok": true,
+    "pending": null,
+    "error": null,
+    "executed": false,
+    "check_only": true,
+    "server_content_signature": "6083a4c37caa76e2bd6036612421d175d01bc4de1c726a22a3d50e256ec70495",
+    "changed": false,
+    "message": "只读检测回执"
+  },
+  "updated_at": "2026-11-05 09:27:52",
   "claimed_pid": 30488
 }
