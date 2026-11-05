@@ -25,5 +25,41 @@
   ],
   "first_seen": "2026-10-16 22:37:42",
   "last_change": "2026-10-23 14:40:47",
-  "last_alive": "2026-11-05"
+  "last_alive": "2026-11-05",
+  "manifest_cache": {
+    "name": "$azhash$9$7$416$4a4d48c29f7ccfc8",
+    "names": [
+      "$azhash$9$7$416$4a4d48c29f7ccfc8",
+      "$cvhash$1491$a936161d137fd62b",
+      "$l2dhash$1607$354af993836d0922",
+      "$pichash$1312$8a012342ed5fa1ff",
+      "$bgmhash$1300$d10f89b716830704",
+      "$paintinghash$1813$b0c6867039468fd4",
+      "$mangahash$1342$a0e167afa87865dc",
+      "$cipherhash$1310$5caeaadfa764a04e",
+      "$dormhash$1551$8e7d5d13f4cd923c",
+      "$maphash$333$059dc192332c5f56"
+    ],
+    "signature": "6083a4c37caa76e2bd6036612421d175d01bc4de1c726a22a3d50e256ec70495",
+    "etag": "\"3718FFA3E204003B98E9F35CCC1ED748\"",
+    "last_modified": "Fri, 23 Oct 2026 03:22:13 GMT",
+    "endpoint": "https://blhx-patch-oss.oss-cn-hangzhou.aliyuncs.com/android/hash/$azhash$9$7$416$4a4d48c29f7ccfc8",
+    "entries": 65050,
+    "bytes": 4173664
+  },
+  "last_probe": "2026-11-05 09:27:11",
+  "content_signature": "6083a4c37caa76e2bd6036612421d175d01bc4de1c726a22a3d50e256ec70495",
+  "content_schema": 1,
+  "manifest_names": [
+    "$azhash$9$7$416$4a4d48c29f7ccfc8",
+    "$cvhash$1491$a936161d137fd62b",
+    "$l2dhash$1607$354af993836d0922",
+    "$pichash$1312$8a012342ed5fa1ff",
+    "$bgmhash$1300$d10f89b716830704",
+    "$paintinghash$1813$b0c6867039468fd4",
+    "$mangahash$1342$a0e167afa87865dc",
+    "$cipherhash$1310$5caeaadfa764a04e",
+    "$dormhash$1551$8e7d5d13f4cd923c",
+    "$maphash$333$059dc192332c5f56"
+  ]
 }
