@@ -21,10 +21,13 @@
   "from_version": "9.7.416",
   "issued_at": "2026-11-05 11:25:20",
   "issued_reason": "本机 9.7.416 落后于云端 9.7.421",
-  "status": "running",
+  "status": "failed",
   "claimed_at": "2026-11-05 11:46:56",
-  "finished_at": null,
-  "result": null,
-  "updated_at": "2026-11-05 11:46:56",
+  "finished_at": "2026-11-05 11:47:02",
+  "result": {
+    "ok": false,
+    "error": "RuntimeError: Current package has no committed audit baseline; retry description-audit before replacing inputs again"
+  },
+  "updated_at": "2026-11-05 11:47:02",
   "claimed_pid": 32180
 }
