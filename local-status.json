@@ -5,21 +5,21 @@
   "scripts64_md5": "81dc5f15c4478c0a174e496fc628e35d",
   "sharecfg_count": 32,
   "lua_files": null,
-  "busy": true,
+  "busy": false,
   "phase": "done",
-  "lock": true,
+  "lock": false,
   "pid": 28968,
-  "online_at": "2026-11-05 20:46:50",
+  "online_at": "2026-11-05 20:49:26",
   "last_hotupdate": "2026-11-05 20:08:47",
   "note": "例行上报（loop）",
   "content_signature": "96535d25080652a42f6e626da02c257df9bad6ce0c7c92155fd9e0334bd9e5f2",
   "content_schema": 1,
-  "generation_pending": true,
+  "generation_pending": false,
   "description_audit": {
     "version": "9.7.425",
-    "signature": "e1c24a5bb89b08f33c021d3c068b23451e5d893bd3a1bb7a587cdb58a56a28e4",
+    "signature": "228da657f896df9bf960e413b0edf727d62638d473b7dc1b3d90db200bf53939",
     "status": "reviewing",
-    "generated": "2026-11-05 20:33:51",
+    "generated": "2026-11-05 20:49:03",
     "counts": {
       "confirmed_equal": 26250,
       "confirmed_difference": 821
@@ -41,9 +41,9 @@
         "still_present": 821
       },
       "current_snapshot": {
-        "snapshot": "图片\\20261105-203351-e1c24a5b\\核查快照.json.gz",
-        "sha256": "f2e82cdc903d9efac0e51458842f9cb173dddc37c62db02494ca37644ad431c9",
-        "signature": "e1c24a5bb89b08f33c021d3c068b23451e5d893bd3a1bb7a587cdb58a56a28e4",
+        "snapshot": "图片\\20261105-204903-228da657\\核查快照.json.gz",
+        "sha256": "ed022b59e2c947be9cbe71af3caf0aacf89d685f16524a6108c1a8b2cd93d8c8",
+        "signature": "228da657f896df9bf960e413b0edf727d62638d473b7dc1b3d90db200bf53939",
         "version": "9.7.425",
         "game_signature": "b421c3e50e4b1cf46a6941f981740c03b8eb8d2fd81d8b60ab7d5728f7e82693"
       },
@@ -60,7 +60,7 @@
       "csv": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\修复对照.csv",
       "images": [
         {
-          "file": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\图片\\20261105-203351-e1c24a5b\\修复对照-01.png",
+          "file": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\图片\\20261105-204903-228da657\\修复对照-01.png",
           "sha256": "5c916cf4025db773cb00205dce1c18b93b1324c4a268a124617df1bfc72404b8",
           "width": 3200,
           "height": 598,
