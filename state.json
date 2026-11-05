@@ -49,7 +49,7 @@
   ],
   "first_seen": "2026-10-16 22:37:42",
   "last_change": "2026-11-05 23:36:08",
-  "last_alive": "2026-11-05",
+  "last_alive": "2026-11-06",
   "manifest_cache": {
     "name": "$azhash$9$7$427$d54d4a4bd7a8ba53",
     "names": [
@@ -71,7 +71,7 @@
     "entries": 65274,
     "bytes": 4190780
   },
-  "last_probe": "2026-11-05 23:58:07",
+  "last_probe": "2026-11-06 00:00:07",
   "content_signature": "9fa25f798143cc0bd64488d29e197b9fc301f4460d999bbdec84f2259ad51f86",
   "content_schema": 1,
   "manifest_names": [
