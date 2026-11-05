@@ -8,49 +8,50 @@
   "busy": false,
   "phase": "failed",
   "lock": false,
-  "pid": 32180,
-  "online_at": "2026-11-05 11:50:43",
+  "pid": 10084,
+  "online_at": "2026-11-05 12:01:52",
   "last_hotupdate": "2026-11-05 11:27:12",
   "note": "例行上报（loop）",
   "content_signature": null,
   "content_schema": 1,
   "generation_pending": true,
   "description_audit": {
-    "version": "9.7.416",
-    "signature": "088ca7370d9eb9edec9679f90e98668828f31c2bfbd51a03893c0d813a0917d8",
+    "version": "9.7.421",
+    "signature": "262fca34eb44418f65372909fdeda9de4e16338371cf1284a43934008b82cb71",
     "status": "reviewing",
-    "generated": "2026-11-05 00:07:04",
+    "generated": "2026-11-05 12:01:24",
     "counts": {
-      "confirmed_equal": 26206,
-      "confirmed_difference": 825
+      "confirmed_equal": 26240,
+      "confirmed_difference": 821
     },
-    "skills": 2351,
-    "level_records": 19235,
-    "public_level_records": 19228,
+    "skills": 2355,
+    "level_records": 19275,
+    "public_level_records": 19268,
     "internal_runtime_records": 7,
     "level_policy": "Declared max_level; max_level=0 is one separately labelled internal default-level inspection, not a trainable level.",
     "whole_skill_levels_closed": 181,
     "acceptance": {
       "accepted": false,
-      "remaining_tasks": 132874,
+      "remaining_tasks": 133174,
       "required": "逐条核查全部描述条件和效果，不能用参数相等替代整技能核查"
     },
     "changes": {
-      "mode": "same_package_review",
+      "mode": "package_comparison",
       "counts": {
-        "still_present": 825
+        "still_present": 821,
+        "code_fixed": 4
       },
       "current_snapshot": {
+        "snapshot": "图片\\20261105-120124-262fca34\\核查快照.json.gz",
+        "sha256": "ed03dd340b4ab8922feae5bc30529051f470ee1a57bb21a9e9493bbb0c1fd314",
+        "signature": "262fca34eb44418f65372909fdeda9de4e16338371cf1284a43934008b82cb71",
+        "version": "9.7.421",
+        "game_signature": "5a3eb2c2bd948e66f2c282ad8e97344ef85c94f4aaae807f2628c872b01fdc77"
+      },
+      "baseline_snapshot": {
         "snapshot": "图片\\20261105-000704-088ca737\\核查快照.json.gz",
         "sha256": "f807f564d9d540557a5eba4290bdde4947065b2b5c0d9ad082c75fc153fe554b",
         "signature": "088ca7370d9eb9edec9679f90e98668828f31c2bfbd51a03893c0d813a0917d8",
-        "version": "9.7.416",
-        "game_signature": "afb28885752bbef16d8a429b40a27d0d2aebb6a6382c3da0606cd0de5231980c"
-      },
-      "baseline_snapshot": {
-        "snapshot": "图片\\20261104-231006-03fe67fd\\核查快照.json.gz",
-        "sha256": "e04cac4828ee24c7db49120148b67623c96db3adca97b13f66af856241da3b18",
-        "signature": "03fe67fd395c82321799f18b36954ad4a963048f8fdad4fd84ad38d12d9dab83",
         "version": "9.7.416",
         "game_signature": "afb28885752bbef16d8a429b40a27d0d2aebb6a6382c3da0606cd0de5231980c"
       },
@@ -59,11 +60,30 @@
       "csv": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\修复对照.csv",
       "images": [
         {
-          "file": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\图片\\20261105-000704-088ca737\\修复对照-01.png",
-          "sha256": "3f9fda23ca9dfbc90acfac9dd0f3e33fe979ccedcc1757c4d9ff82c5dee09485",
+          "file": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\图片\\20261105-120124-262fca34\\修复对照-01.png",
+          "sha256": "6ef47a19504876bb1ffd0f5c5335a3cba1ba7f1c580a3ec9516961d4f0343b2a",
           "width": 3200,
-          "height": 598,
-          "rows": []
+          "height": 1108,
+          "rows": [
+            {
+              "skill_id": 18210,
+              "bbox": [
+                48,
+                348,
+                3152,
+                678
+              ]
+            },
+            {
+              "skill_id": 19210,
+              "bbox": [
+                48,
+                678,
+                3152,
+                1008
+              ]
+            }
+          ]
         }
       ]
     }
