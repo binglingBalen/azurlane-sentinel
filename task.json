@@ -21,10 +21,19 @@
   "from_version": "9.7.421",
   "issued_at": "2026-11-05 12:17:18",
   "issued_reason": "本机 9.7.421 落后于云端 9.7.421",
-  "status": "running",
+  "status": "done",
   "claimed_at": "2026-11-05 12:47:41",
-  "finished_at": null,
-  "result": null,
-  "updated_at": "2026-11-05 12:47:41",
+  "finished_at": "2026-11-05 12:47:44",
+  "result": {
+    "ok": true,
+    "pending": null,
+    "error": null,
+    "executed": false,
+    "check_only": false,
+    "server_content_signature": "f9c762b733a5c1ced1007b510500f8a3476bb7efd0d92f14a4e7391668693639",
+    "changed": false,
+    "message": "内容已同步，无需重复解包"
+  },
+  "updated_at": "2026-11-05 12:47:44",
   "claimed_pid": 14980
 }
