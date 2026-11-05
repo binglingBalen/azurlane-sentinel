@@ -1,12 +1,12 @@
 {
   "schema": 2,
-  "id": "task-9.7.421-f9c762b733a5c1ce",
+  "id": "task-9.7.423-f7cad85aa6a39b57",
   "action": "hotupdate",
-  "target_azhash": "$azhash$9$7$421$de1d9d34dc1a4042",
-  "target_version": "9.7.421",
-  "target_content_signature": "f9c762b733a5c1ced1007b510500f8a3476bb7efd0d92f14a4e7391668693639",
+  "target_azhash": "$azhash$9$7$423$990e6fb49e388fdc",
+  "target_version": "9.7.423",
+  "target_content_signature": "f7cad85aa6a39b5754de15c4824ab590e7d3a8bccf9c6abe1d59ef2b62088640",
   "manifest_names": [
-    "$azhash$9$7$421$de1d9d34dc1a4042",
+    "$azhash$9$7$423$990e6fb49e388fdc",
     "$cvhash$1492$1b20fed9b7300799",
     "$l2dhash$1607$354af993836d0922",
     "$pichash$1312$8a012342ed5fa1ff",
@@ -19,21 +19,11 @@
   ],
   "from_azhash": "$azhash$9$7$421$de1d9d34dc1a4042",
   "from_version": "9.7.421",
-  "issued_at": "2026-11-05 12:17:18",
-  "issued_reason": "本机 9.7.421 落后于云端 9.7.421",
-  "status": "done",
-  "claimed_at": "2026-11-05 12:47:41",
-  "finished_at": "2026-11-05 12:47:44",
-  "result": {
-    "ok": true,
-    "pending": null,
-    "error": null,
-    "executed": false,
-    "check_only": false,
-    "server_content_signature": "f9c762b733a5c1ced1007b510500f8a3476bb7efd0d92f14a4e7391668693639",
-    "changed": false,
-    "message": "内容已同步，无需重复解包"
-  },
-  "updated_at": "2026-11-05 12:47:44",
-  "claimed_pid": 14980
+  "issued_at": "2026-11-05 14:50:39",
+  "issued_reason": "本机 9.7.421 落后于云端 9.7.423",
+  "status": "pending",
+  "claimed_at": null,
+  "finished_at": null,
+  "result": null,
+  "updated_at": "2026-11-05 14:50:39"
 }

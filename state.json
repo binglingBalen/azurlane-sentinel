@@ -1,8 +1,8 @@
 {
   "_说明": "版本哨兵状态，由 GitHub Actions 自动维护（不要手改）。azhash = 上次观测到的版本指纹；version = 对应版本号；changes = 累计检测到多少次变化；history = 变化历史（最近 200 条）；last_alive = 每日心跳（用于避免 scheduled workflow 因 60 天无活动被禁用）。",
-  "azhash": "$azhash$9$7$421$de1d9d34dc1a4042",
-  "version": "9.7.421",
-  "changes": 4,
+  "azhash": "$azhash$9$7$423$990e6fb49e388fdc",
+  "version": "9.7.423",
+  "changes": 5,
   "history": [
     {
       "azhash": "$azhash$9$7$410$18e78750de62b4a0",
@@ -27,15 +27,21 @@
       "version": "9.7.421",
       "at": "2026-11-05 11:25:20",
       "from": "$azhash$9$7$416$4a4d48c29f7ccfc8"
+    },
+    {
+      "azhash": "$azhash$9$7$423$990e6fb49e388fdc",
+      "version": "9.7.423",
+      "at": "2026-11-05 14:50:39",
+      "from": "$azhash$9$7$421$de1d9d34dc1a4042"
     }
   ],
   "first_seen": "2026-10-16 22:37:42",
-  "last_change": "2026-11-05 11:25:20",
+  "last_change": "2026-11-05 14:50:39",
   "last_alive": "2026-11-05",
   "manifest_cache": {
-    "name": "$azhash$9$7$421$de1d9d34dc1a4042",
+    "name": "$azhash$9$7$423$990e6fb49e388fdc",
     "names": [
-      "$azhash$9$7$421$de1d9d34dc1a4042",
+      "$azhash$9$7$423$990e6fb49e388fdc",
       "$cvhash$1492$1b20fed9b7300799",
       "$l2dhash$1607$354af993836d0922",
       "$pichash$1312$8a012342ed5fa1ff",
@@ -46,18 +52,18 @@
       "$dormhash$1551$8e7d5d13f4cd923c",
       "$maphash$336$773e2b8757c13184"
     ],
-    "signature": "f9c762b733a5c1ced1007b510500f8a3476bb7efd0d92f14a4e7391668693639",
-    "etag": "\"96DBFC86D6657B529687F64A14DC7005\"",
-    "last_modified": "Thu, 05 Nov 2026 01:26:07 GMT",
-    "endpoint": "https://blhx-patch-oss.oss-cn-hangzhou.aliyuncs.com/android/hash/$azhash$9$7$421$de1d9d34dc1a4042",
-    "entries": 65273,
-    "bytes": 4190702
+    "signature": "f7cad85aa6a39b5754de15c4824ab590e7d3a8bccf9c6abe1d59ef2b62088640",
+    "etag": "\"7A985B49DDF165EDE0DFD35FF9005F46\"",
+    "last_modified": "Thu, 05 Nov 2026 06:45:31 GMT",
+    "endpoint": "https://blhx-patch-oss.oss-cn-hangzhou.aliyuncs.com/android/hash/$azhash$9$7$423$990e6fb49e388fdc",
+    "entries": 65274,
+    "bytes": 4190780
   },
-  "last_probe": "2026-11-05 14:48:38",
-  "content_signature": "f9c762b733a5c1ced1007b510500f8a3476bb7efd0d92f14a4e7391668693639",
+  "last_probe": "2026-11-05 14:50:39",
+  "content_signature": "f7cad85aa6a39b5754de15c4824ab590e7d3a8bccf9c6abe1d59ef2b62088640",
   "content_schema": 1,
   "manifest_names": [
-    "$azhash$9$7$421$de1d9d34dc1a4042",
+    "$azhash$9$7$423$990e6fb49e388fdc",
     "$cvhash$1492$1b20fed9b7300799",
     "$l2dhash$1607$354af993836d0922",
     "$pichash$1312$8a012342ed5fa1ff",
