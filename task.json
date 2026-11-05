@@ -17,17 +17,13 @@
     "$dormhash$1551$8e7d5d13f4cd923c",
     "$maphash$336$773e2b8757c13184"
   ],
-  "from_azhash": "$azhash$9$7$416$4a4d48c29f7ccfc8",
-  "from_version": "9.7.416",
-  "issued_at": "2026-11-05 11:25:20",
-  "issued_reason": "本机 9.7.416 落后于云端 9.7.421",
-  "status": "failed",
-  "claimed_at": "2026-11-05 11:46:56",
-  "finished_at": "2026-11-05 11:47:02",
-  "result": {
-    "ok": false,
-    "error": "RuntimeError: Current package has no committed audit baseline; retry description-audit before replacing inputs again"
-  },
-  "updated_at": "2026-11-05 11:47:02",
-  "claimed_pid": 32180
+  "from_azhash": "$azhash$9$7$421$de1d9d34dc1a4042",
+  "from_version": "9.7.421",
+  "issued_at": "2026-11-05 12:17:18",
+  "issued_reason": "本机 9.7.421 落后于云端 9.7.421",
+  "status": "pending",
+  "claimed_at": null,
+  "finished_at": null,
+  "result": null,
+  "updated_at": "2026-11-05 12:17:18"
 }
