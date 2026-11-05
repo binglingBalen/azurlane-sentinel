@@ -21,13 +21,19 @@
   "from_version": "9.7.423",
   "issued_at": "2026-11-05 20:06:59",
   "issued_reason": "本机 9.7.423 落后于云端 9.7.425",
-  "status": "running",
+  "status": "done",
   "claimed_at": "2026-11-05 20:34:57",
-  "finished_at": "2026-11-05 20:09:52",
+  "finished_at": "2026-11-05 20:46:36",
   "result": {
-    "ok": false,
-    "error": "TimeoutExpired: Command '['D:\\\\桌面\\\\AI工作区\\\\dsh\\\\碧蓝自动拆包\\\\程序区\\\\工具链\\\\bin\\\\luajit-decompiler.exe', 'C:\\\\Users\\\\WINDOW~1\\\\AppData\\\\Local\\\\Temp\\\\al_2cjijf0i\\\\st101023.luac', '-o', 'C:\\\\Users\\\\WINDOW~1\\\\AppData\\\\Local\\\\Temp\\\\al_2cjijf0i', '-f', '-s']' timed out after 60 seconds"
+    "ok": true,
+    "pending": [],
+    "error": null,
+    "executed": true,
+    "check_only": false,
+    "server_content_signature": "96535d25080652a42f6e626da02c257df9bad6ce0c7c92155fd9e0334bd9e5f2",
+    "changed": true,
+    "message": "无新船, 新资产已同步, 内容级分析完成(节点 10) -> 20261105_更新_v4"
   },
-  "updated_at": "2026-11-05 20:34:57",
+  "updated_at": "2026-11-05 20:46:36",
   "claimed_pid": 35680
 }
