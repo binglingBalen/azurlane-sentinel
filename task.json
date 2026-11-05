@@ -21,13 +21,13 @@
   "from_version": "9.7.423",
   "issued_at": "2026-11-05 20:06:59",
   "issued_reason": "本机 9.7.423 落后于云端 9.7.425",
-  "status": "failed",
-  "claimed_at": "2026-11-05 20:07:22",
+  "status": "running",
+  "claimed_at": "2026-11-05 20:34:57",
   "finished_at": "2026-11-05 20:09:52",
   "result": {
     "ok": false,
     "error": "TimeoutExpired: Command '['D:\\\\桌面\\\\AI工作区\\\\dsh\\\\碧蓝自动拆包\\\\程序区\\\\工具链\\\\bin\\\\luajit-decompiler.exe', 'C:\\\\Users\\\\WINDOW~1\\\\AppData\\\\Local\\\\Temp\\\\al_2cjijf0i\\\\st101023.luac', '-o', 'C:\\\\Users\\\\WINDOW~1\\\\AppData\\\\Local\\\\Temp\\\\al_2cjijf0i', '-f', '-s']' timed out after 60 seconds"
   },
-  "updated_at": "2026-11-05 20:09:52",
-  "claimed_pid": 12336
+  "updated_at": "2026-11-05 20:34:57",
+  "claimed_pid": 35680
 }
