@@ -21,10 +21,19 @@
   "from_version": "9.7.427",
   "issued_at": "2026-11-06 21:19:17",
   "issued_reason": "本机 9.7.427 落后于云端 9.7.429",
-  "status": "running",
+  "status": "done",
   "claimed_at": "2026-11-06 21:20:13",
-  "finished_at": null,
-  "result": null,
-  "updated_at": "2026-11-06 21:20:13",
+  "finished_at": "2026-11-06 21:40:44",
+  "result": {
+    "ok": true,
+    "pending": [],
+    "error": null,
+    "executed": true,
+    "check_only": false,
+    "server_content_signature": "653c0faf7d6bb373a553e86fd004b4d5ece043be5d70fef528100b4262c0b98c",
+    "changed": true,
+    "message": "无新船, 新资产已同步, 内容级分析完成(节点 5) -> 20261106_更新"
+  },
+  "updated_at": "2026-11-06 21:40:44",
   "claimed_pid": 13732
 }
