@@ -11,28 +11,43 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 
 
-def command(args,timeout=90):
-    result=subprocess.run(args,cwd=ROOT,text=True,encoding='utf-8',errors='replace',
-                          stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=timeout)
+def git(*args, timeout=90):
+    # Rebase also creates commits. Actions runners may have no default identity.
+    result = subprocess.run(
+        ['git', '-c', 'user.name=github-actions[bot]', '-c',
+         'user.email=41898282+github-actions[bot]@users.noreply.github.com', *args],
+        cwd=ROOT, text=True, encoding='utf-8', errors='replace',
+        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=timeout)
     if result.returncode:
-        raise RuntimeError(str(args[:3])+': '+result.stdout[-500:])
+        raise RuntimeError('git ' + ' '.join(args[:2]) + ': ' + result.stdout[-500:])
     return result.stdout
 
 
+def pull_latest():
+    try:
+        git('pull', '--rebase', '--autostash', '--quiet')
+    except (RuntimeError, subprocess.TimeoutExpired):
+        for marker in ('rebase-merge', 'rebase-apply'):
+            path = git('rev-parse', '--git-path', marker).strip()
+            if (ROOT / path).is_dir():
+                git('rebase', '--abort')
+                break
+        raise
+
+
 def publish():
-    command(['git','add','--','state.json','task.json'])
+    git('add', '--', 'state.json', 'task.json')
     diff=subprocess.run(['git','diff','--cached','--quiet'],cwd=ROOT)
     if diff.returncode==0:return
     if diff.returncode!=1:raise RuntimeError('Cannot inspect staged cloud state')
-    command(['git','-c','user.name=github-actions[bot]','-c',
-             'user.email=41898282+github-actions[bot]@users.noreply.github.com',
-             'commit','-m','sentinel: content observation and task delivery'])
+    git('commit', '-m', 'sentinel: content observation and task delivery')
     for attempt in range(3):
         try:
-            command(['git','push']);return
+            git('push')
+            return
         except RuntimeError:
             if attempt==2:raise
-            command(['git','pull','--rebase','--autostash'])
+            pull_latest()
 
 
 def successor():
@@ -59,7 +74,7 @@ def main():
         while time.monotonic()<deadline:
             started=time.monotonic()
             try:
-                command(['git','pull','--rebase','--autostash','--quiet'])
+                pull_latest()
                 invocation=[sys.executable,'-u','probe.py','--no-mail']
                 if first and args.verify_delivery:invocation.append('--verify-delivery')
                 result=subprocess.run(invocation,cwd=ROOT,timeout=100)
