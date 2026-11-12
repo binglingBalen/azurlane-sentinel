@@ -21,9 +21,10 @@
   "from_version": "9.7.434",
   "issued_at": "2026-11-12 16:58:19",
   "issued_reason": "本机 9.7.434 落后于云端 9.7.434",
-  "status": "pending",
-  "claimed_at": null,
+  "status": "running",
+  "claimed_at": "2026-11-12 16:58:49",
   "finished_at": null,
   "result": null,
-  "updated_at": "2026-11-12 16:58:19"
+  "updated_at": "2026-11-12 16:58:49",
+  "claimed_pid": 14112
 }
