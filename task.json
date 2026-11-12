@@ -19,15 +19,11 @@
   ],
   "from_azhash": "$azhash$9$7$434$3c7e27248eedd14e",
   "from_version": "9.7.434",
-  "issued_at": "2026-11-12 16:26:14",
+  "issued_at": "2026-11-12 16:58:19",
   "issued_reason": "本机 9.7.434 落后于云端 9.7.434",
-  "status": "failed",
-  "claimed_at": "2026-11-12 16:27:19",
-  "finished_at": "2026-11-12 16:27:37",
-  "result": {
-    "ok": false,
-    "error": "RuntimeError: Current package has no committed audit baseline; retry description-audit before replacing inputs again"
-  },
-  "updated_at": "2026-11-12 16:27:38",
-  "claimed_pid": 14112
+  "status": "pending",
+  "claimed_at": null,
+  "finished_at": null,
+  "result": null,
+  "updated_at": "2026-11-12 16:58:19"
 }
