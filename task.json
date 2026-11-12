@@ -1,12 +1,12 @@
 {
   "schema": 2,
-  "id": "task-9.7.434-5b97b291081c6c33",
+  "id": "task-9.7.434-d53b96a5f060670a",
   "action": "hotupdate",
-  "target_azhash": "$azhash$9$7$434$a112edb2f79488e9",
+  "target_azhash": "$azhash$9$7$434$0d95de31288ee145",
   "target_version": "9.7.434",
-  "target_content_signature": "5b97b291081c6c333103a36338c92f1a0c8c382772a3ddf024f7a19ee7b81e4b",
+  "target_content_signature": "d53b96a5f060670ae49a4128e09fb0a3060234070ed2f6326d6763df25a3cd58",
   "manifest_names": [
-    "$azhash$9$7$434$a112edb2f79488e9",
+    "$azhash$9$7$434$0d95de31288ee145",
     "$cvhash$1494$3fe9451201a6cc3e",
     "$l2dhash$1607$354af993836d0922",
     "$pichash$1312$8a012342ed5fa1ff",
@@ -19,15 +19,11 @@
   ],
   "from_azhash": "$azhash$9$7$434$3c7e27248eedd14e",
   "from_version": "9.7.434",
-  "issued_at": "2026-11-12 20:05:19",
+  "issued_at": "2026-11-12 20:17:19",
   "issued_reason": "本机 9.7.434 落后于云端 9.7.434",
-  "status": "failed",
-  "claimed_at": "2026-11-12 20:06:26",
-  "finished_at": "2026-11-12 20:06:43",
-  "result": {
-    "ok": false,
-    "error": "RuntimeError: Current package has no committed audit baseline; retry description-audit before replacing inputs again"
-  },
-  "updated_at": "2026-11-12 20:06:43",
-  "claimed_pid": 14112
+  "status": "pending",
+  "claimed_at": null,
+  "finished_at": null,
+  "result": null,
+  "updated_at": "2026-11-12 20:17:19"
 }
