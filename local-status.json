@@ -5,66 +5,77 @@
   "scripts64_md5": "a1bf5b5ca9e6ad90933bb40b09f63075",
   "sharecfg_count": 32,
   "lua_files": null,
-  "busy": false,
-  "phase": "failed",
-  "lock": false,
+  "busy": true,
+  "phase": "running",
+  "lock": true,
   "pid": 13560,
-  "online_at": "2026-11-13 09:27:11",
+  "online_at": "2026-11-13 09:29:20",
   "last_hotupdate": "2026-11-12 10:37:18",
   "note": "例行上报（loop）",
   "content_signature": "71dc91c6293b98ac984f6345779e8d45831474ff7f90044267ac0c61b1aa9994",
   "content_schema": 1,
   "generation_pending": true,
   "description_audit": {
-    "version": "9.7.429",
-    "signature": "93ddba44f7afa159d71523f3f01dbf523fc1ec06c7b65a448329eaf7938c2dc1",
+    "version": "9.7.434",
+    "signature": "d0464863736b5648f0f2a4e29578d5a22b61ab82e19417846d99976fb57b616e",
     "status": "reviewing",
-    "generated": "2026-11-06 21:39:26",
+    "generated": "2026-11-13 09:28:50",
     "counts": {
-      "confirmed_equal": 26250,
+      "confirmed_equal": 26380,
       "confirmed_difference": 821
     },
-    "skills": 2355,
-    "level_records": 19275,
-    "public_level_records": 19268,
+    "skills": 2362,
+    "level_records": 19336,
+    "public_level_records": 19329,
     "internal_runtime_records": 7,
     "level_policy": "Declared max_level; max_level=0 is one separately labelled internal default-level inspection, not a trainable level.",
     "whole_skill_levels_closed": 181,
     "acceptance": {
       "accepted": false,
-      "remaining_tasks": 133224,
+      "remaining_tasks": 133847,
       "required": "逐条核查全部描述条件和效果，不能用参数相等替代整技能核查"
     },
     "changes": {
       "mode": "package_comparison",
       "counts": {
-        "still_present": 821
+        "still_present": 811,
+        "review_changed": 10
       },
       "current_snapshot": {
+        "snapshot": "图片\\20261113-092850-d0464863\\核查快照.json.gz",
+        "sha256": "36a0861930e5d833e219a362ffc5f7e718bd96d8062ca376fcc20583908a61dc",
+        "signature": "d0464863736b5648f0f2a4e29578d5a22b61ab82e19417846d99976fb57b616e",
+        "version": "9.7.434",
+        "game_signature": "1ff10c09727da173f9fa39c6e4328e56c36b7f867f14894f70be0cf4e410d2d7"
+      },
+      "official_repair_counts": {},
+      "baseline_snapshot": {
         "snapshot": "图片\\20261106-213926-93ddba44\\核查快照.json.gz",
         "sha256": "2039045693ffaeda4539e97b341a24c3351b603b9970649f2f029d3e68d976f7",
         "signature": "93ddba44f7afa159d71523f3f01dbf523fc1ec06c7b65a448329eaf7938c2dc1",
         "version": "9.7.429",
         "game_signature": "1132192d1ab6aade910b923800b8d5b7ac88e87a5a8ef3ebe2c439dfe79dedba"
       },
-      "official_repair_counts": {},
-      "baseline_snapshot": {
-        "snapshot": "图片\\20261105-235900-34da2adf\\核查快照.json.gz",
-        "sha256": "28647b149a65c232f57ea19397dfdb95fa69561cd78e13e3f1c649fdd1a1b4d1",
-        "signature": "34da2adfb0d9f4493fd1b76fec8332762c0d4135d4448aa31cef1e9e59cf0429",
-        "version": "9.7.427",
-        "game_signature": "ef07a3c0d34c651cda412a96ea0034900bc6db30e7e1f6d85c0beb01eca84d95"
-      },
       "html": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\修复对照.html",
       "json": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\修复对照.json",
       "csv": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\修复对照.csv",
       "images": [
         {
-          "file": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\图片\\20261106-213926-93ddba44\\修复对照-01.png",
-          "sha256": "0fc16df8ac263136dd802c186dda0832e06109de2c65dd4cbd71d20520e0b8e5",
+          "file": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\图片\\20261113-092850-d0464863\\修复对照-01.png",
+          "sha256": "00d78bc6cfcbe46c5a7f9ab41e17166854342135843273571b5fc6d05e5c824a",
           "width": 3200,
-          "height": 598,
-          "rows": []
+          "height": 2122,
+          "rows": [
+            {
+              "skill_id": 12540,
+              "bbox": [
+                48,
+                348,
+                3152,
+                2022
+              ]
+            }
+          ]
         }
       ]
     }
