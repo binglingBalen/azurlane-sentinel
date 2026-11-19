@@ -1,25 +1,25 @@
 {
   "host": "GJS-20230826YWD",
-  "azhash": "$azhash$9$7$437$61657aa2c40e3cb1",
-  "version": "9.7.437",
-  "scripts64_md5": "bc20652523209dbf0e7e9def0773097f",
+  "azhash": "$azhash$9$7$445$ac60c7cab9de5da2",
+  "version": "9.7.445",
+  "scripts64_md5": "0abc509d1f1b5a0f9bb0751846fd5103",
   "sharecfg_count": 32,
   "lua_files": null,
   "busy": false,
   "phase": "done",
   "lock": false,
   "pid": 11268,
-  "online_at": "2026-11-19 14:48:02",
-  "last_hotupdate": "2026-11-19 10:34:20",
-  "note": "例行上报（loop）",
-  "content_signature": "29a523bb04dd6c08333218397ca16893b5fe24635a65ca7324d7fd0851170f3f",
+  "online_at": "2026-11-19 15:18:05",
+  "last_hotupdate": "2026-11-19 14:52:25",
+  "note": "task-9.7.445-bd8a4d8240bf04d6 → done",
+  "content_signature": "bd8a4d8240bf04d60ea8a3edcbe60f2acbd02b5b61896442394f2da45ae3948a",
   "content_schema": 1,
   "generation_pending": false,
   "description_audit": {
-    "version": "9.7.437",
-    "signature": "aa4a09cc59337a4b42caa3010d4bfe241e71f08fa0498b34158c7623813282b4",
+    "version": "9.7.445",
+    "signature": "a688b2b5c7738c08d062d9926c5301d3fbd152d32ed637b38dca065999fe0739",
     "status": "reviewing",
-    "generated": "2026-11-19 11:02:32",
+    "generated": "2026-11-19 15:16:04",
     "counts": {
       "confirmed_equal": 26380,
       "confirmed_difference": 821
@@ -41,27 +41,27 @@
         "still_present": 821
       },
       "current_snapshot": {
+        "snapshot": "图片\\20261119-151604-a688b2b5\\核查快照.json.gz",
+        "sha256": "74130dfc304b4d9625039f200b5c3a7a50f5f704432bb645bbc91ea7d8d23391",
+        "signature": "a688b2b5c7738c08d062d9926c5301d3fbd152d32ed637b38dca065999fe0739",
+        "version": "9.7.445",
+        "game_signature": "5ca903dc78e264107cf9871ca1db823edfc3db78b40460153acfc959ff9255b0"
+      },
+      "official_repair_counts": {},
+      "baseline_snapshot": {
         "snapshot": "图片\\20261119-110232-aa4a09cc\\核查快照.json.gz",
         "sha256": "27c07c267b7871d3f09e4f81b9de154b194f7f158f8d8d51b40947f76ccb1af5",
         "signature": "aa4a09cc59337a4b42caa3010d4bfe241e71f08fa0498b34158c7623813282b4",
         "version": "9.7.437",
         "game_signature": "1d6e650cc54c5d043fd2fddcbd53a8c2e24ae7fbcb33d559cef440d203de4a68"
       },
-      "official_repair_counts": {},
-      "baseline_snapshot": {
-        "snapshot": "图片\\20261113-175204-26b793b2\\核查快照.json.gz",
-        "sha256": "18d95cb095c0263b6a4c60a0e92b3781cbb96ae3904de29f558bc541c476acfa",
-        "signature": "26b793b2d2ef425560fa3e34e94d1b407d7b44b3e446becefd3c59619a806c61",
-        "version": "9.7.434",
-        "game_signature": "7cc46f610ee42a61e192a5a73e67713a43f3bbd10861659440bdbf9ce5b6e90a"
-      },
       "html": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\修复对照.html",
       "json": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\修复对照.json",
       "csv": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\修复对照.csv",
       "images": [
         {
-          "file": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\图片\\20261119-110232-aa4a09cc\\修复对照-01.png",
-          "sha256": "1340d008408081cb3b19602db452e54cc21e31ab8fc896951dec01ff441babff",
+          "file": "D:\\桌面\\AI工作区\\dsh\\碧蓝自动拆包\\成果区\\常规资产成果\\舰船\\统计图表\\描述代码核查\\图片\\20261119-151604-a688b2b5\\修复对照-01.png",
+          "sha256": "468f350146e111e8b5ad3c68bc9230be75f36db6e6bd84cae743ec44132573c5",
           "width": 3200,
           "height": 598,
           "rows": []
