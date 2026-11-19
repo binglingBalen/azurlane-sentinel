@@ -1,12 +1,12 @@
 {
   "schema": 2,
-  "id": "task-9.7.445-bd8a4d8240bf04d6",
+  "id": "task-9.7.445-58aebba64de70bdd",
   "action": "hotupdate",
-  "target_azhash": "$azhash$9$7$445$ac60c7cab9de5da2",
+  "target_azhash": "$azhash$9$7$445$8d9efee5556b3ec9",
   "target_version": "9.7.445",
-  "target_content_signature": "bd8a4d8240bf04d60ea8a3edcbe60f2acbd02b5b61896442394f2da45ae3948a",
+  "target_content_signature": "58aebba64de70bdd594a8b4fda23b97dd303acf0188b4d81d908b6365c832940",
   "manifest_names": [
-    "$azhash$9$7$445$ac60c7cab9de5da2",
+    "$azhash$9$7$445$8d9efee5556b3ec9",
     "$cvhash$1495$d155c0f70e32b508",
     "$l2dhash$1620$dfb966c27b37630e",
     "$pichash$1312$8a012342ed5fa1ff",
@@ -17,23 +17,13 @@
     "$dormhash$1552$932107d5bf31bc5f",
     "$maphash$338$75e08993e9a03eb9"
   ],
-  "from_azhash": "$azhash$9$7$437$61657aa2c40e3cb1",
-  "from_version": "9.7.437",
-  "issued_at": "2026-11-19 14:48:56",
-  "issued_reason": "本机 9.7.437 落后于云端 9.7.445",
-  "status": "done",
-  "claimed_at": "2026-11-19 14:49:33",
-  "finished_at": "2026-11-19 15:18:05",
-  "result": {
-    "ok": true,
-    "pending": [],
-    "error": null,
-    "executed": true,
-    "check_only": false,
-    "server_content_signature": "bd8a4d8240bf04d60ea8a3edcbe60f2acbd02b5b61896442394f2da45ae3948a",
-    "changed": true,
-    "message": "无新船, 新资产已同步, 内容级分析完成(节点 6) -> 20261119_更新_v2"
-  },
-  "updated_at": "2026-11-19 15:18:05",
-  "claimed_pid": 11268
+  "from_azhash": "$azhash$9$7$445$ac60c7cab9de5da2",
+  "from_version": "9.7.445",
+  "issued_at": "2026-11-19 20:58:09",
+  "issued_reason": "本机 9.7.445 落后于云端 9.7.445",
+  "status": "pending",
+  "claimed_at": null,
+  "finished_at": null,
+  "result": null,
+  "updated_at": "2026-11-19 20:58:09"
 }
