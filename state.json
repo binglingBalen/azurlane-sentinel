@@ -115,11 +115,11 @@
     "signature": "58aebba64de70bdd594a8b4fda23b97dd303acf0188b4d81d908b6365c832940",
     "etag": "\"113C10A2757652FCE270912927BAEE13\"",
     "last_modified": "Thu, 19 Nov 2026 12:34:53 GMT",
-    "endpoint": "https://blhx-patch-oss.oss-cn-hangzhou.aliyuncs.com/android/hash/$azhash$9$7$445$8d9efee5556b3ec9",
+    "endpoint": "https://line3-patch-blhx.bilibiligame.net/android/hash/$azhash$9$7$445$8d9efee5556b3ec9",
     "entries": 65497,
     "bytes": 4206104
   },
-  "last_probe": "2026-11-22 18:11:48",
+  "last_probe": "2026-11-22 18:15:09",
   "content_signature": "58aebba64de70bdd594a8b4fda23b97dd303acf0188b4d81d908b6365c832940",
   "content_schema": 1,
   "manifest_names": [
