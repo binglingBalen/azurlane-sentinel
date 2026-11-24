@@ -1,8 +1,8 @@
 {
   "_说明": "版本哨兵状态，由 GitHub Actions 自动维护（不要手改）。azhash = 上次观测到的版本指纹；version = 对应版本号；changes = 累计检测到多少次变化；history = 变化历史（最近 200 条）；last_alive = 每日心跳（用于避免 scheduled workflow 因 60 天无活动被禁用）。",
-  "azhash": "$azhash$9$7$445$8d9efee5556b3ec9",
-  "version": "9.7.445",
-  "changes": 15,
+  "azhash": "$azhash$9$7$456$8aad2ba54b121924",
+  "version": "9.7.456",
+  "changes": 16,
   "history": [
     {
       "azhash": "$azhash$9$7$410$18e78750de62b4a0",
@@ -93,42 +93,48 @@
       "version": "9.7.445",
       "at": "2026-11-19 20:58:09",
       "from": "$azhash$9$7$445$ac60c7cab9de5da2"
+    },
+    {
+      "azhash": "$azhash$9$7$456$8aad2ba54b121924",
+      "version": "9.7.456",
+      "at": "2026-11-24 10:49:50",
+      "from": "$azhash$9$7$445$8d9efee5556b3ec9"
     }
   ],
   "first_seen": "2026-10-16 22:37:42",
-  "last_change": "2026-11-19 20:58:09",
+  "last_change": "2026-11-24 10:49:50",
   "last_alive": "2026-11-24",
   "manifest_cache": {
-    "name": "$azhash$9$7$445$8d9efee5556b3ec9",
+    "name": "$azhash$9$7$456$8aad2ba54b121924",
     "names": [
-      "$azhash$9$7$445$8d9efee5556b3ec9",
-      "$cvhash$1495$d155c0f70e32b508",
-      "$l2dhash$1620$dfb966c27b37630e",
+      "$azhash$9$7$456$8aad2ba54b121924",
+      "$cvhash$1496$b1612d5acc5d69bc",
+      "$l2dhash$1625$64f26b5101e038f5",
       "$pichash$1312$8a012342ed5fa1ff",
       "$bgmhash$1300$d10f89b716830704",
-      "$paintinghash$1820$92f0c0cf10a581e3",
+      "$paintinghash$1826$f2dcef0b3eb66e68",
       "$mangahash$1343$8f960df452ece83f",
       "$cipherhash$1310$5caeaadfa764a04e",
       "$dormhash$1552$932107d5bf31bc5f",
       "$maphash$338$75e08993e9a03eb9"
     ],
-    "signature": "58aebba64de70bdd594a8b4fda23b97dd303acf0188b4d81d908b6365c832940",
-    "etag": "\"113C10A2757652FCE270912927BAEE13\"",
-    "last_modified": "Thu, 19 Nov 2026 12:34:53 GMT",
-    "endpoint": "https://blhx-patch-oss.oss-cn-hangzhou.aliyuncs.com/android/hash/$azhash$9$7$445$8d9efee5556b3ec9",
-    "entries": 65497,
-    "bytes": 4206104
+    "signature": "b8e2bec81fb7324a9fcc7b02fe64b9470328da1f2b815fdd092d682e7f4d7d2e",
+    "etag": "\"DC31ECFC37B856CC527DA56B97A1FC96\"",
+    "last_modified": "Mon, 23 Nov 2026 13:40:05 GMT",
+    "endpoint": "https://blhx-patch-oss.oss-cn-hangzhou.aliyuncs.com/android/hash/$azhash$9$7$456$8aad2ba54b121924",
+    "entries": 65815,
+    "bytes": 4226719
   },
-  "last_probe": "2026-11-24 10:48:49",
-  "content_signature": "58aebba64de70bdd594a8b4fda23b97dd303acf0188b4d81d908b6365c832940",
+  "last_probe": "2026-11-24 10:49:50",
+  "content_signature": "b8e2bec81fb7324a9fcc7b02fe64b9470328da1f2b815fdd092d682e7f4d7d2e",
   "content_schema": 1,
   "manifest_names": [
-    "$azhash$9$7$445$8d9efee5556b3ec9",
-    "$cvhash$1495$d155c0f70e32b508",
-    "$l2dhash$1620$dfb966c27b37630e",
+    "$azhash$9$7$456$8aad2ba54b121924",
+    "$cvhash$1496$b1612d5acc5d69bc",
+    "$l2dhash$1625$64f26b5101e038f5",
     "$pichash$1312$8a012342ed5fa1ff",
     "$bgmhash$1300$d10f89b716830704",
-    "$paintinghash$1820$92f0c0cf10a581e3",
+    "$paintinghash$1826$f2dcef0b3eb66e68",
     "$mangahash$1343$8f960df452ece83f",
     "$cipherhash$1310$5caeaadfa764a04e",
     "$dormhash$1552$932107d5bf31bc5f",
