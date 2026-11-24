@@ -1,14 +1,14 @@
 {
   "schema": 2,
-  "id": "task-9.7.456-4215962d97d2bd73",
+  "id": "task-9.7.456-e5ef50cb6f7fe76f",
   "action": "hotupdate",
-  "target_azhash": "$azhash$9$7$456$a2081f98089413aa",
+  "target_azhash": "$azhash$9$7$456$6f5a8b0e08e670a4",
   "target_version": "9.7.456",
-  "target_content_signature": "4215962d97d2bd73b3ec23df630d96ae7d6abddacefe1c5a44e127e8e7c771ce",
+  "target_content_signature": "e5ef50cb6f7fe76f4438847de1488f4459353719628942ddf0471b7fcc2616e2",
   "manifest_names": [
-    "$azhash$9$7$456$a2081f98089413aa",
+    "$azhash$9$7$456$6f5a8b0e08e670a4",
     "$cvhash$1496$b1612d5acc5d69bc",
-    "$l2dhash$1625$64f26b5101e038f5",
+    "$l2dhash$1625$2654d8424fcbda04",
     "$pichash$1312$8a012342ed5fa1ff",
     "$bgmhash$1300$d10f89b716830704",
     "$paintinghash$1826$f2dcef0b3eb66e68",
@@ -19,11 +19,11 @@
   ],
   "from_azhash": "$azhash$9$7$445$8d9efee5556b3ec9",
   "from_version": "9.7.445",
-  "issued_at": "2026-11-24 15:06:50",
+  "issued_at": "2026-11-24 21:03:18",
   "issued_reason": "本机 9.7.445 落后于云端 9.7.456",
   "status": "pending",
   "claimed_at": null,
   "finished_at": null,
   "result": null,
-  "updated_at": "2026-11-24 15:06:50"
+  "updated_at": "2026-11-24 21:03:18"
 }
